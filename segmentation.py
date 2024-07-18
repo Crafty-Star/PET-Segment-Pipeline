@@ -2,7 +2,27 @@ import os
 import nibabel as nib
 import gzip
 import shutil
-#from moosez import moose
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
+
+
+# Subclass QMainWindow to customize your application's main window
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("My App")
+        button = QPushButton("Press Me!")
+
+        # Set the central widget of the Window.
+        self.setCentralWidget(button)
+
+app = QApplication(sys.argv)
+
+window = MainWindow()
+window.show()
+
+
 
 #helper functions
 def safe_remove(    inpute_delete):
@@ -55,7 +75,7 @@ for patient in files_dir:
 
 
 #begin the segmentation
-os.system("moosez -d C:\\Users\\GreyS\\Desktop\\Pleat -m clin_pt_fdg_brain_v1")
+#os.system("moosez -d C:\\Users\\GreyS\\Desktop\\Pleat -m clin_pt_fdg_brain_v1")
 
 
 #variables for the moosez function
@@ -64,4 +84,8 @@ os.system("moosez -d C:\\Users\\GreyS\\Desktop\\Pleat -m clin_pt_fdg_brain_v1")
 #output_dir = 'C:\\Users\\GreyS\\Desktop\\Mooze_output'
 #accelerator = 'cpu'
 #broken for some reason
-#moose(model_name, input_dir, output_dir, accelerator)x
+#moose(model_name, input_dir, output_dir, accelerator)
+
+
+# Start the event loop.
+app.exec()
